@@ -12,6 +12,7 @@
 # include "./libft/libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
 
 /**
  * descript: this is token_type;
@@ -34,24 +35,25 @@ enum e_type
 
 typedef struct s_token
 {
-	e_type			type;
 	char			*word;
 	struct s_token	*next;
-}	t_token;
+}				t_token;
 
 typedef struct s_redir
 {
-	e_type			type;
+	enum e_type		type;
 	char			*name;
 	struct s_redir	*left;
 	struct s_redir	*right;
-}	t_redir;
+}				t_redir;
 
 typedef struct s_cmd
 {
-	struct *s_redir	root_redir;
+	struct s_redir	*root_redir;
 	char			**word;
 	struct s_cmd	*next;
-}				t_cmd
+}				t_cmd;
+
+int	tokenize(char *line, t_list **token_list);
 
 #endif
